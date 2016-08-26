@@ -13,8 +13,8 @@ function batchprocessing(folder, force_overwrite = false, numberOfTrys = 10)
     try 
       do
         j++;     
-          data=dlmread(strcat(folder,files(i).name), ';');
-      until (data(j, 1) > 0 || j >= numberOfTrys)
+          data=dlmread(strcat(folder,files(i).name), ';', j, 0);
+      until (data(1, 1) > 0 || j >= numberOfTrys)
     catch
       disp(sprintf('Error in %s, continuing', files(i).name))
       continue
