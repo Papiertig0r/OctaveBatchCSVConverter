@@ -16,7 +16,7 @@ function batchprocessing(folder, force_overwrite = false)
           data=dlmread(strcat(folder,files(i).name), ";");
       until (data(j, 1) > 0)
     catch
-      disp(cstrcat("Error in ", files(i).name,", continuing"))
+      disp(sprintf("Error in %s, continuing", files(i).name))
       continue
     end_try_catch
     
