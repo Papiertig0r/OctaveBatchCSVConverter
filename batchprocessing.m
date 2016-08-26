@@ -1,4 +1,4 @@
-function batchprocessing(folder, force_overwrite = false)
+function batchprocessing(folder, force_overwrite = false, numberOfTrys = 10)
   more off;
   files = dir(strcat(folder, '*.csv'));
   disp(sprintf('Detected %i files.', length(files)));
@@ -14,7 +14,7 @@ function batchprocessing(folder, force_overwrite = false)
       do
         j++;     
           data=dlmread(strcat(folder,files(i).name), ';');
-      until (data(j, 1) > 0)
+      until (data(j, 1) > 0 || j >= numberOfTrys)
     catch
       disp(sprintf('Error in %s, continuing', files(i).name))
       continue
